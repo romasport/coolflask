@@ -1,0 +1,42 @@
+h1, h2, h3, h4, h5, h6 {
+  margin: 12px 0; 
+  font-family:'Montserrat', sans-serif;
+  font-weight: 700;
+  line-height: 1.5em;
+  color: @dark;
+  text-rendering: optimizelegibility; // Fix the character spacing for headings
+  text-transform: uppercase;
+}
+
+
+h1 { font-size: 2em;} // 32px
+h2 { font-size: 1.5em; line-height: 1.5em;  font-family: Tahoma, Geneva, sans-serif;text-transform: none;} // 24px
+h3 { font-size: 1.125em ; line-height: 1.333333333333333em;} // 18px
+h4 { font-size: 1em; } // 16px
+h5 { font-size: 0.875em; line-height: 1.714285714285714em } // 14px
+h6 { font-size: 0.8125em; line-height: 1.846153846153846em;} // 13px
+
+p{margin-bottom: 1.5em}
+
+a{
+  color: @dark;
+  .transition();
+  text-decoration: none;
+
+  &:hover{
+    color: @green;
+  }
+}
+
+blockquote{
+    font-family: Tahoma, Geneva, sans-serif;
+    color: #ffffff;
+    font-size: 1.5em;
+    font-weight: 700;
+    line-height:  1.5em;
+    background: url(../img/quote_icon.png) 36px 8px no-repeat;
+
+    > p{
+      margin: 1.5em 1em 1.5em 4em;
+    }
+}

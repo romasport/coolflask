@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Cool Stuff</title>
+	<meta name="description" content="Here goes description">
+	<meta name="author" content="author name">
+
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Stylesheets -->
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/style.css" />
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+	<div class="container">
+		
+		<header class="row">
+
+			<div class="span12">
+
+				<div class="identity">
+					<a href="index.html" class="logo">Cool Stuff</a>
+					<b>...</b>
+					<p>Responsive blog / magazine</p>
+				</div>
+
+			</div> <!-- /.span12 [identity] -->
+
+			<div class="span12 nav-box">
+
+				<nav class="span9 main-menu">
+					
+					<input type="checkbox" id="dropdown-menu" class="custom-dropdown">
+					<label for="dropdown-menu">Menu <b></b></label>
+
+					<ul>
+						<li>
+							<a href="index.html">Home</a>
+							<ul>
+								<li>
+									<a href="home2.html">Home timeline</a>
+								</li>
+								<li>
+									<a href="home3.html">Home masonry</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="services.html">Pages</a>
+							<ul>
+								<li>
+									<a href="left_sidebar.html">Left sidebar</a>
+								</li>
+								<li>
+									<a href="right_sidebar.html">Right sidebar</a>
+								</li>
+								<li>
+									<a href="error.html">Error 404</a>
+								</li>
+								<li>
+									<a href="members.html">Members</a>
+								</li>
+								<li>
+									<a href="events.html">Events</a>
+								</li>
+								<li>
+									<a href="single_event.html">Events description</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="categories.html">Categories</a>
+						</li>
+						<li>
+							<a href="blog.html">Blog</a>
+						</li>
+						<li>
+							<a href="features.html">Features</a>
+						</li>
+						<li class="active-menu-link">
+							<a href="contact.html">Contact</a>
+						</li>
+					</uli>
+				</nav> <!-- /.span8 [main-menu] -->
+
+				<form action="#" class="span3 search-nav">
+					<p>
+
+						<input type="submit" value="search">
+						<input type="text" placeholder="Search">
+						
+					</p>
+				</form>
+				
+			</div> <!-- /.span12 [nav-box] -->
+		</header> <!-- /.row -->
+		
+		<div role="main">
+
+			<section class="row bredcrumbs">
+
+				<nav class="span12 path">
+					<ul>
+						<li>
+							<a href="index.html">Home</a>
+						</li>
+						<li class="path-active">Contact</li>
+					</ul>
+				</nav>
+
+			</section> <!-- /.row [breadcrumbs] -->
+
+			<section class="row">
+				<div class="span12 element-box">
+					<figure class="map-box">
+						<iframe width="425" height="360" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Amsterdam+Avenue,+New+York,+NY,+United+States&amp;aq=0&amp;oq=amstre&amp;sll=40.666056,-73.900223&amp;sspn=0.364062,0.837021&amp;ie=UTF8&amp;hq=&amp;hnear=Amsterdam+Ave,+New+York&amp;ll=40.813385,-73.956265&amp;spn=0.090815,0.209255&amp;t=m&amp;z=13&amp;output=embed"></iframe>
+					</figure>
+
+					<div class="row contact-info">
+
+						<aside class="span3">
+							<h2>Contact Info</h2>
+
+							<ul>
+								<li><p><b>&#9993;</b><a href="mailto:example@example.com">example@example.com</a></p></li>
+								<li><p><b>&#9990;</b>+1 (917) 555-5555</p></li>
+								<li><p><b>&#9742;</b>+1 (917) 555-4444</p></li>
+							</ul>
+						</aside>
+
+						<div class="span9">
+							<h2>Contact Form</h2>
+							<div id="contact_form_result"></div>
+							<form id="contact_page_form" action="#" method="post" class="comment-form row-fluid" data-validate="parsley">
+
+								<p>
+									<label for="name" class="span2">Name</label>
+									<input type="text" name="name" class="span10" data-required="true">
+								</p>
+
+								<p>
+									<label for="email" class="span2">E-mail</label>
+									<input type="email" name="email" class="span10" data-required="true" data-type="email">
+								</p>
+
+								<p>
+									<label for="site" class="span2">Web-site</label>
+									<input type="text" name="site" class="span10" data-trigger="keyup" data-type="url">
+								</p>
+
+								<p>
+									<label for="mess" class="span2">Message</label>
+									<textarea name="mess" class="span10" data-trigger="keyup" data-rangelength="[20,1000]"></textarea>
+								</p>
+								<p>
+									<input type="submit" value="send" class="button button-load large-button offset2 span4">
+								</p>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+		</div> <!-- /main role -->
+
+	</div> <!-- /.container [main] -->
+	
+	<footer class="main-footer">
+
+		<div class="container">
+			<div class="row">
+
+				<nav class="footer-nav span8">
+					<ul>
+						<li>
+							<a href="index.html">Home</a>
+						</li>
+						<li>
+							<a href="services.html">Pages</a>
+						</li>
+						<li>
+							<a href="categories.html">Categories</a>
+						</li>
+						<li>
+							<a href="blog.html">Blog</a>
+						</li>
+						<li>
+							<a href="features.html">Features</a>
+						</li>
+						<li>
+							<a href="contact.html">Contact</a>
+						</li>
+					</ul>
+				</nav>
+
+				<p class="span4">
+					Copyright &copy; 2013 <a href="#">redsky</a>. All rights reserved.
+				</p>
+
+			</div> <!-- ./row -->
+		</div> <!-- /.container -->
+
+	</footer>
+
+	
+	<!-- Scripts -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="js/less.js"></script>
+	<script src="js/parsley.js"></script>
+	<script src="js/project.js"></script>
+
+</body>
+</html>

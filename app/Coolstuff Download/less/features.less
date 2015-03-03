@@ -1,0 +1,233 @@
+/*=============== Demo grid ===============*/
+
+.demo-grid{
+	background-color: #bebebe;
+	height: 3em;
+	text-align: center;
+	color: #ffffff;
+	line-height: 3em;
+}
+
+/*=============== Alerts ===============*/
+
+.alert{
+	background-color: #ffffff;
+	position: relative;
+	margin: 1.5em 0;
+
+	> h4{
+		padding: 0.75em 0;
+		margin: 0 48px 0 24px;
+		border-right: 1px solid rgba(0,0,0, 0.05);
+		color: #aba89c;
+		
+	}
+
+	.close{
+		position: absolute;
+		top: 50%;
+		margin-top: -24px;
+		right: 0;
+		.hide-text();
+		width: 48px;
+		height: 48px;
+		display: block;
+		margin-top: :;
+		background: url(../img/close_icon.png) 0 0 no-repeat;
+	}
+}
+
+/*Color alerts*/
+
+.error-alert{
+	background-color: @error;
+
+	>h4{
+		color: #ffffff;
+		border-right: 1px solid rgba(255,255,255, 0.15);
+	}
+}
+
+.info-alert{
+	background-color: @info;
+
+	>h4{
+		color: #ffffff;
+		border-right: 1px solid rgba(255,255,255, 0.15);
+	}
+}
+
+.success-alert{
+	background-color: @success;
+
+	>h4{
+		color: #ffffff;
+		border-right: 1px solid rgba(255,255,255, 0.15);
+	}
+}
+
+.wrong-alert{
+	background-color: @wrong;
+
+	>h4{
+		color: #ffffff;
+		border-right: 1px solid rgba(255,255,255, 0.15);
+	}
+}
+
+/*=============== Alerts ===============*/
+
+.button{
+	background-color: @green;
+	line-height: 3em;
+	display: table;
+	text-align: center;
+	text-transform: uppercase;
+	color: #ffffff;
+	padding: 0 10px;
+	border: none;
+	margin-bottom: 1.5em;
+}
+
+.button-sign{
+	background: @blue;
+
+	&:hover{
+		background-color: darken(@blue, 10%);
+		color: darken(#ffffff, 5%);
+	}
+
+	&:active{
+		background-color: darken(@blue, 20%);
+		color: darken(#ffffff, 10%);
+	}
+}
+
+.button-read{
+	background: @red;
+
+	&:hover{
+		background-color: darken(@red, 10%);
+		color: darken(#ffffff, 5%);
+	}
+
+	&:active{
+		background-color: darken(@red, 20%);
+		color: darken(#ffffff, 10%);
+	}
+}
+
+.button-load{
+	background: @green;
+
+	&:hover{
+		background-color: darken(@green, 10%);
+		color: darken(#ffffff, 5%);
+	}
+
+	&:active{
+		background-color: darken(@green, 20%);
+		color: darken(#ffffff, 10%);
+	}
+}
+
+.button-contact{
+	background: @dark-blue;
+
+	&:hover{
+		background-color: darken(@dark-blue, 10%);
+		color: darken(#ffffff, 5%);
+	}
+
+	&:active{
+		background-color: darken(@dark-blue, 20%);
+		color: darken(#ffffff, 10%);
+	}
+}
+
+.button-submit{
+	background: @violet;
+
+	&:hover{
+		background-color: darken(@violet, 10%);
+		color: darken(#ffffff, 5%);
+	}
+
+	&:active{
+		background-color: darken(@violet, 20%);
+		color: darken(#ffffff, 10%);
+	}
+}
+
+.button-join{
+	background: @magenta;
+
+	&:hover{
+		background-color: darken(@magenta, 10%);
+		color: darken(#ffffff, 5%);
+	}
+
+	&:active{
+		background-color: darken(@magenta, 20%);
+		color: darken(#ffffff, 10%);
+	}
+}
+
+.large-button{
+	display: block;
+}
+
+/*=============== Pricing table ===============*/
+
+.pricing-table{
+
+	> li{
+		background-color: @dark;
+		margin-bottom: 1.5em;
+
+		> h4{
+			background-color: #1a1a1a;
+			color: #ffffff;
+			text-align: center;
+			line-height: 3em;
+			margin: 0;
+		}
+
+		> ul > li{
+			text-align: center;
+			color: #ffffff;
+			.box-shadow(0, -1px, 0, #2d2d2d);
+			line-height: 4.5em;
+			text-transform: uppercase;
+		}
+	}
+}
+
+.price{
+	color: #ffffff;
+	font-weight: 700;
+	text-align: center;
+	font-size: 3.125em;
+	line-height: 1.44em;
+	display: table;
+	margin: 12px auto;
+	position: relative;
+
+	b{
+		font-size: 0.48em;
+		color: #383737;
+		font-weight: 300;
+		position: absolute;
+		top: 2px;
+		left: -20px;
+	}
+	sup{
+		font-size: 0.48em;
+		color: #383737;
+		font-weight: 300;
+		position: absolute;
+		right: -40px;
+		top: -12px;
+		text-decoration: underline;
+	}
+}
