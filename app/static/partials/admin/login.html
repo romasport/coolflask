@@ -1,0 +1,16 @@
+<section id="loginBox">
+    <header>
+        <h4>Авторизация</h4>
+    </header>    
+    <div class="loginField">
+        <form novalidate name="login" ng-submit="signIn()">
+                <input type="text" name="nickname" placeholder="nickname" ng-model='loginData.nickname' required>
+                <input type="password" name="passwd" placeholder="Password" ng-model='loginData.passwd' required>
+            <button ng-disabled="login.$invalid" ng-class="{'active':login.$valid,'loading':loading}" >Вход</button>
+        </form>
+    </div>
+    <div class="notify" ng-class="{'active':notice}">
+        <h1>{{notice}}</h1>
+        <a ui-sref="admin" ng-if='dash'>Dash borad</a>
+    </div>
+</section>

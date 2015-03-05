@@ -1,0 +1,223 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+
+	<p class="no-bradcrumbs"/></p>
+
+	<section class="span9">
+
+
+        {% for article in articles %}
+		<article class="element-box">
+
+			<header class="element-top-bar clearfix">
+				<a href="" class="user-info fl">{{ article.user }}</a>
+				<b class="time-info fr">{{ article.time }} PM</b>
+			</header>
+
+			<h2>
+				<a href="/article/{{ article.id }}">
+					{{ article.title }}
+				</a>
+			</h2>
+
+			<figure>
+                {% if article.image %}
+				<a href="{{ article.image }}" class="show-image" title="{{ article.title }}">
+					<img src="{{ article.image }}" alt="{{ article.title }}">
+					<b class="zoom-icon"></b>
+				</a>
+                {% endif %}
+			</figure>
+
+			<p>{{ article.content }}</p>
+
+			<footer class="element-bottom-bar">
+				<ul>
+					<li>
+						<a href="#" class="comment-icon"><b>3</b> Comments</a>
+					</li>
+					<li>
+						<a href="#">Design</a>
+					</li>
+					<li>
+						<a href="#" class="link-icon">Permalink</a>
+					</li>
+				</ul>
+			</footer>
+		</article> <!-- /.element-box [blockquote]-->
+
+        {% endfor %}
+
+	</section> <!-- /.span9 [main content] -->
+
+	<aside class="span3">
+
+		<div class="sidebar-element">
+
+			<h3>Category</h3>
+
+			<ul class="category-list">
+				<li class="blue-bage">
+					<h3>
+						<a href="#">Category 1</a>
+					</h3>
+					<p>Category description</p>
+				</li>
+				<li class="red-bage">
+					<h3>
+						<a href="#">Category 2</a>
+					</h3>
+					<p>Category description</p>
+				</li>
+				<li class="green-bage">
+					<h3>
+						<a href="#">Category 3</a>
+					</h3>
+					<p>Category description</p>
+				</li>
+			</ul>
+		</div> <!-- /.sidebar-element -->
+
+		<div class="sidebar-element">
+
+			<form action="#" class="search-form">
+				<p>
+					<input type="submit" value="search" class="search-button">
+					<input type="text" placeholder="Search">
+				</p>
+			</form>
+
+		</div><!-- /.sidebar-element -->
+
+		<div class="sidebar-element">
+
+			<div id="calendar_wrap">
+				<table id="wp-calendar">
+					<caption>
+						<a href="#" id="prev">&lsaquo;</a>
+						<span>March</span>
+						<a href="#" id="next">&rsaquo;</a>
+					</caption>
+
+					<thead>
+						<tr>
+							<th scope="col" title="Monday">M</th>
+							<th scope="col" title="Tuesday">T</th>
+							<th scope="col" title="Wednesday">W</th>
+							<th scope="col" title="Thursday">T</th>
+							<th scope="col" title="Friday">F</th>
+							<th scope="col" title="Saturday">S</th>
+							<th scope="col" title="Sunday">S</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td colspan="4" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td>
+						</tr>
+						<tr>
+							<td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>
+						</tr>
+						<tr>
+							<td>11</td><td>12</td><td>13</td><td><a href="#">14</a></td><td>15</td><td>16</td><td>17</td>
+						</tr>
+						<tr>
+							<td>18</td><td>19</td><td><a href="#">20</a></td><td id="today"><a href="#">21</a></td><td>22</td><td>23</td><td>24</td>
+						</tr>
+						<tr>
+							<td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td>
+						</tr>
+					</tbody>
+				</table>
+			</div> <!-- /.calendar_wp -->
+
+		</div><!-- /.sidebar-element -->
+
+		<div class="sidebar-element">
+
+			<div class="dropdown-box">
+
+				<input type="checkbox" id="dropdown" class="custom-dropdown">
+				<label for="dropdown">Archives <b></b></label>
+				<ul>
+					<li>
+						<a href="#">Title 1</a>
+					</li>
+					<li>
+						<a href="#">Title 2</a>
+					</li>
+					<li>
+						<a href="#">Title 3</a>
+					</li>
+				</ul>
+
+			</div>
+
+		</div><!-- /.sidebar-element -->
+
+		<div class="sidebar-element">
+
+			<h3>Recent Posts</h3>
+
+			<ul class="recent-posts">
+				<li class="row-fluid">
+					<figure class="span4">
+						<a href="#"><img src="http://placehold.it/60x60" alt="image"></a>
+					</figure>
+					<div class="span8">
+						<h4><a href="#">Vestibulum erat ipsum</a></h4>
+						<p>erat ipsum pharetra nec </p>
+					</div>
+				</li>
+				<li class="row-fluid">
+					<figure class="span4">
+						<a href="#"><img src="http://placehold.it/60x60" alt="image"></a>
+					</figure>
+					<div class="span8">
+						<h4><a href="#">Vestibulum erat ipsum</a></h4>
+						<p>erat ipsum pharetra nec </p>
+					</div>
+				</li>
+				<li class="row-fluid">
+					<figure class="span4">
+						<a href="#"><img src="http://placehold.it/60x60" alt="image"></a>
+					</figure>
+					<div class="span8">
+						<h4><a href="#">Vestibulum erat ipsum</a></h4>
+						<p>erat ipsum pharetra nec </p>
+					</div>
+				</li>
+
+			</ul>
+
+		</div><!-- /.sidebar-element -->
+
+		<div class="sidebar-element">
+
+			<h3>Tags</h3>
+
+			<ul class="tags">
+				<li>
+					<a href="#">design <b>15</b></a>
+				</li>
+				<li>
+					<a href="#">art <b>7</b></a>
+				</li>
+				<li>
+					<a href="#">fashion <b>16</b></a>
+				</li>
+				<li>
+					<a href="#">photo <b>25</b></a>
+				</li>
+				<li>
+					<a href="#">nature <b>70</b></a>
+				</li>
+			</ul>
+
+		</div><!-- /.sidebar-element -->
+
+	</aside> <!-- /.span3 [sidebar] -->
+
+</div> <!-- /.row -->
+{% endblock %}

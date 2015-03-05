@@ -1,0 +1,54 @@
+<div class="row">
+ <div class="span12 nav-box row">
+
+        <nav class="span9 main-menu">
+
+            <input type="checkbox" id="dropdown-menu" class="custom-dropdown">
+            <label for="dropdown-menu">Menu <b></b></label>
+
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a ui-sref=".">Admin</a>
+                </li>
+                <li>
+                    <a ui-sref=".articleList">Articles</a>
+                </li>
+                <li>
+                    <a href="blog.html">Blog</a>
+                </li>
+                <li>
+                    <a href="features.html">Features</a>
+                </li>
+                <li>
+                    <a href="/contact/">Contact</a>
+                </li>
+                <li>
+                    <a href="" ng-click="logout()">Выход</a>
+                </li>
+            </ul>
+        </nav> <!-- /.span8 [main-menu] -->
+
+        <form action="#" class="span3 search-nav">
+            <p>
+
+                <input type="submit" value="search">
+                <input type="text" placeholder="Search">
+
+            </p>
+        </form>
+
+    </div> <!-- /.span12 [nav-box] -->
+</div>
+
+    <div ui-view></div>
+
+<script type="text/ng-template" id="logout">
+    <div class="logout">
+        <p>vihod</p>
+        <button class="yes btn" ng-click="confirm('remove')">DO IT</button>
+        <button class="no btn" ng-click="closeThisDialog('cancle')">CANCLE</button>
+    </div>
+</script>

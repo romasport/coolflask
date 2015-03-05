@@ -1,199 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Cool Stuff - Error {{ error }}</title>
-	<meta name="description" content="Here goes description">
-	<meta name="author" content="author name">
+{% extends "layout.html" %}
+{% block content %}
+	<section class="row bredcrumbs">
 
-	<!-- Mobile Specific Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<nav class="span12 path">
+			<ul>
+				<li>
+					<a href="index.html">Home</a>
+				</li>
+				<li class="path-active">Error {{ error }}</li>
+			</ul>
+		</nav>
 
-	<!-- Stylesheets -->
-	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	</section> <!-- /.row [breadcrumbs] -->
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<section class="row">
 
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+		<div class="error-box span12">
 
-</head>
-<body>
-	<div class="container">
-		
-		<header class="row">
-
-			<div class="span12">
-
-				<div class="identity">
-					<a href="index.html" class="logo">Cool Stuff</a>
-					<b>...</b>
-					<p>Responsive blog / magazine</p>
-				</div>
-
-			</div> <!-- /.span12 [identity] -->
-
-			<div class="span12 nav-box">
-
-				<nav class="span9 main-menu">
-					
-					<input type="checkbox" id="dropdown-menu" class="custom-dropdown">
-					<label for="dropdown-menu">Menu <b></b></label>
-
-					<ul>
-						<li>
-							<a href="index.html">Home</a>
-							<ul>
-								<li>
-									<a href="home2.html">Home timeline</a>
-								</li>
-								<li>
-									<a href="home3.html">Home masonry</a>
-								</li>
-							</ul>
-						</li>
-						<li class="active-menu-link">
-							<a href="services.html">Pages</a>
-							<ul>
-								<li>
-									<a href="left_sidebar.html">Left sidebar</a>
-								</li>
-								<li>
-									<a href="right_sidebar.html">Right sidebar</a>
-								</li>
-								<li>
-									<a href="error.html">Error 404</a>
-								</li>
-								<li>
-									<a href="members.html">Members</a>
-								</li>
-								<li>
-									<a href="events.html">Events</a>
-								</li>
-								<li>
-									<a href="single_event.html">Events description</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="categories.html">Categories</a>
-						</li>
-						<li>
-							<a href="blog.html">Blog</a>
-						</li>
-						<li>
-							<a href="features.html">Features</a>
-						</li>
-						<li>
-							<a href="contact.html">Contact</a>
-						</li>
-					</uli>
-				</nav> <!-- /.span8 [main-menu] -->
-
-				<form action="#" class="span3 search-nav">
-					<p>
-
-						<input type="submit" value="search">
-						<input type="text" placeholder="Search">
-						
-					</p>
-				</form>
-				
-			</div> <!-- /.span12 [nav-box] -->
-		</header> <!-- /.row -->
-		
-		<div role="main">
-
-			<section class="row bredcrumbs">
-
-				<nav class="span12 path">
-					<ul>
-						<li>
-							<a href="index.html">Home</a>
-						</li>
-						<li class="path-active">Error {{ error }}</li>
-					</ul>
-				</nav>
-
-			</section> <!-- /.row [breadcrumbs] -->
-
-			<section class="row">
-
-				<div class="error-box span12">
-
-					<div class="row">
-
-						<div class="span12 error-message">
-							<h1><b>{{ error }}</b> <span>error</span></h1>
-						</div>
-
-						<div class="span12">
-							<p>The page you are looking for seems to be missing</p>
-						</div>
-
-						<div class="span4 offset4">
-							<a href="index.html" class="button button-read large-button">Go back</a>
-						</div>
-
-					</div> <!-- /.row -->
-					
-				</div>
-
-				
-				
-			</section>
-
-			
-
-		</div> <!-- /main role -->
-
-	</div> <!-- /.container [main] -->
-	
-	<footer class="main-footer">
-
-		<div class="container">
 			<div class="row">
 
-				<nav class="footer-nav span8">
-					<ul>
-						<li>
-							<a href="index.html">Home</a>
-						</li>
-						<li>
-							<a href="services.html">Pages</a>
-						</li>
-						<li>
-							<a href="categories.html">Categories</a>
-						</li>
-						<li>
-							<a href="blog.html">Blog</a>
-						</li>
-						<li>
-							<a href="features.html">Features</a>
-						</li>
-						<li>
-							<a href="contact.html">Contact</a>
-						</li>
-					</ul>
-				</nav>
+				<div class="span12 error-message">
+					<h1><b>{{ error }}</b> <span>error</span></h1>
+				</div>
 
-				<p class="span4">
-					Copyright &copy; 2015 <a href="#">redsky</a>. All rights reserved.
-				</p>
+				<div class="span12">
+					<p>The page you are looking for seems to be missing</p>
+				</div>
 
-			</div> <!-- ./row -->
-		</div> <!-- /.container -->
+				<div class="span4 offset4">
+					<a href="index.html" class="button button-read large-button">Go back</a>
+				</div>
 
-	</footer>
+			</div> <!-- /.row -->
 
-	
-	<!-- Scripts -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		</div>
 
-	<script src="{{ url_for('static', filename='js/less.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/project.js') }}"></script>
 
-</body>
-</html>
+
+	</section>
+{% endblock %}

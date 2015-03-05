@@ -13,12 +13,13 @@ from app.extensions import (
 )
 
 from app.model import User
+from app import view
 
 def create_app(config_object=DevConfig):
     app = Flask(__name__)
     app.config.from_object(config_object)
     register_extensions(app)
-    #register_blueprints(app)
+    register_blueprints(app)
     register_errorhandlers(app)
     return app
 
@@ -31,12 +32,12 @@ def register_extensions(app):
     migrate.init_app(app, db)
     return None
 
-'''
+
 def register_blueprints(app):
-    app.register_blueprint(public.views.blueprint)
-    app.register_blueprint(user.views.blueprint)
+    app.register_blueprint(view.front.blueprint)
+    app.register_blueprint(view.back.blueprint)
     return None
-'''
+
 
 def register_errorhandlers(app):
     def render_error(error):

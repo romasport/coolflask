@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="row bredcrumbs">
+
+	<nav class="span12 path">
+		<ul>
+			<li>
+				<a href="/">Home</a>
+			</li>
+			<li class="path-active">Contact</li>
+		</ul>
+	</nav>
+
+</section> <!-- /.row [breadcrumbs] -->
+
+<section class="row">
+	<div class="span12 element-box">
+		<figure class="map-box">
+			<iframe width="425" height="360" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Amsterdam+Avenue,+New+York,+NY,+United+States&amp;aq=0&amp;oq=amstre&amp;sll=40.666056,-73.900223&amp;sspn=0.364062,0.837021&amp;ie=UTF8&amp;hq=&amp;hnear=Amsterdam+Ave,+New+York&amp;ll=40.813385,-73.956265&amp;spn=0.090815,0.209255&amp;t=m&amp;z=13&amp;output=embed"></iframe>
+		</figure>
+
+		<div class="row contact-info">
+
+			<aside class="span3">
+				<h2>Contact Info</h2>
+
+				<ul>
+					<li><p><b>&#9993;</b><a href="mailto:example@example.com">example@example.com</a></p></li>
+					<li><p><b>&#9990;</b>+1 (917) 555-5555</p></li>
+					<li><p><b>&#9742;</b>+1 (917) 555-4444</p></li>
+				</ul>
+			</aside>
+
+			<div class="span9">
+				<h2>Contact Form</h2>
+				<div id="contact_form_result"></div>
+				<form id="contact_page_form" action="#" method="post" class="comment-form row-fluid" data-validate="parsley">
+
+					<p>
+						<label for="name" class="span2">Name</label>
+						<input type="text" name="name" class="span10" data-required="true">
+					</p>
+
+					<p>
+						<label for="email" class="span2">E-mail</label>
+						<input type="email" name="email" class="span10" data-required="true" data-type="email">
+					</p>
+
+					<p>
+						<label for="site" class="span2">Web-site</label>
+						<input type="text" name="site" class="span10" data-trigger="keyup" data-type="url">
+					</p>
+
+					<p>
+						<label for="mess" class="span2">Message</label>
+						<textarea name="mess" class="span10" data-trigger="keyup" data-rangelength="[20,1000]"></textarea>
+					</p>
+					<p>
+						<input type="submit" value="send" class="button button-load large-button offset2 span4">
+					</p>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</section>
+{% endblock %}

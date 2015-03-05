@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Cool Stuff - {{ title }}</title>
+	<meta name="description" content="Here goes description">
+	<meta name="author" content="author name">
+
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Stylesheets -->
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <base href="/">
+    <script  data-pace-options='{ "elements": true }' src="{{ url_for('static', filename='components/pace/pace.min.js') }}"></script>
+    <script data-main="/static/js/admin/main" src="{{ url_for('static', filename='components/requirejs/require.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='components/ngDialog/css/ngDialog.min.css') }}"></head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='components/ngDialog/css/ngDialog-theme-default.min.css') }}"></head>
+
+</head>
+<body>
+	<div class="container">
+		
+		<div role="main">
+
+            {% block content %}{% endblock %}
+
+        	<div id="admin" ui-view></div>
+
+		</div> <!-- /main role -->
+
+	</div> <!-- /.container [main] -->
+	
+	<footer class="main-footer">
+
+		<div class="container">
+			<div class="row">
+
+				<nav class="footer-nav span8">
+					<ul>
+						<li>
+							<a href="index.html">Home</a>
+						</li>
+						<li>
+							<a href="services.html">Pages</a>
+						</li>
+						<li>
+							<a href="categories.html">Categories</a>
+						</li>
+						<li>
+							<a href="blog.html">Blog</a>
+						</li>
+						<li>
+							<a href="features.html">Features</a>
+						</li>
+						<li>
+							<a href="contact.html">Contact</a>
+						</li>
+					</ul>
+				</nav>
+
+				<p class="span4">
+					Copyright &copy; 2015 <a href="#">redsky</a>. All rights reserved.
+				</p>
+
+			</div> <!-- ./row -->
+		</div> <!-- /.container -->
+
+	</footer>
+
+	
+	<!-- Scripts -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<script src="{{ url_for('static', filename="js/mediaelement-and-player.min.js") }}"></script>
+	<script src="{{ url_for('static', filename="js/jquery.swipebox.min.js") }}"></script>
+
+	<script src="{{ url_for('static', filename='js/less.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/project.js') }}"></script>
+
+
+
+	<script>
+		(function() {
+
+			$(".show-image").swipebox();
+
+		}());
+	</script>
+
+</body>
+</html>

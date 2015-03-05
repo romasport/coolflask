@@ -1,0 +1,26 @@
+<nav class="categorys">
+    <header>
+        <h4>Бла бла 3</h4>
+    </header>
+</nav>
+
+<section>
+    <header>
+        <h4>Timeline</h4>
+    </header>
+
+    <div class="mainList" >
+        <div class="timebox "  ng-repeat='post in postList' colorful>
+            <time>{{post.created_at}}</time>
+            <div>
+                {{post.author}}
+            </div>
+            <a ui-sref="post({id:{{post.id}}})">
+                <i class="icon url">{{post.title}}</i>
+            </a>
+             <p>{{post.body}}</p>
+        </div>
+    </div>
+
+
+</section>

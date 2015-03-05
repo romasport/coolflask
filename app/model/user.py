@@ -2,6 +2,9 @@
 from app import db, bcrypt
 from app.config import Config
 
+from werkzeug.security import generate_password_hash, \
+     check_password_hash
+
 from itsdangerous import (
     JSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 
@@ -19,8 +22,13 @@ class User(db.Model):
     sex = db.Column(db.String(2))
     articles = db.relationship('Article', backref='user', lazy='dynamic')
 
-    def __init__(self):
-        pass
+    def __init__(self, nickname, email, first_name, last_name, passwd):
+        self.nickname = nickname
+        self.email = email
+        self.first_name = first_name
+        self.last_name = last_name
+        self.passwd = generate_password_hash(passwd)
+
 
     def as_dict(self):
         jsondata = dict()
@@ -28,11 +36,9 @@ class User(db.Model):
             jsondata.update({c.name: getattr(self, c.name)})
         return jsondata
 
-    def hash_passwd(self, passwd):
-        self.passwd = bcrypt.generate_password_hash(passwd)
 
     def verify_passwd(self, passwd):
-        return bcrypt.check_password_hash(self.passwd, passwd)
+        return check_password_hash(self.passwd, passwd)
 
     def create_auth_token(self):
         s = Serializer(Config.SECRET_KEY)
