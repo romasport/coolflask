@@ -10,7 +10,7 @@
 			<header class="element-top-bar clearfix">
 				<a href="" class="user-info fl">{{ article.user }}</a>
                 <a href="" item="{{article.id}}" type="post"  remove index="{{$index}}">remove</a>
-                <a ui-sref="admin.postModify({id:{{article.id}}})" class="change">change</a>
+                <a ui-sref="admin.articleModify({id:{{article.id}}})" class="change">change</a>
 				<b class="time-info fr">{{ article.time }} PM</b>
 			</header>
 

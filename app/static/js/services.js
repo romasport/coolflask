@@ -6,7 +6,7 @@ define(['angular','angular-resource'], function(angular) {
             return $http.get("/api/" + listType + "/list/" + page + "/" + per_page)
         };
     }]).
-    factory('Post', ['$resource', 'Auth', function($resource, Auth) {
+    factory('Article', ['$resource', 'Auth', function($resource, Auth) {
         return $resource("/api/article/:id", {
             id: '@id'
         }, {
@@ -27,8 +27,39 @@ define(['angular','angular-resource'], function(angular) {
             }
         })
     }]).
-    factory('Posts', ['$resource', 'Auth', function($resource, Auth) {
-        return $resource("/api/article", {}, {
+    factory('Articles', ['$resource', 'Auth', function($resource, Auth) {
+        return $resource("/api/articles", {}, {
+            'save': {
+                method: 'POST',
+                headers: {
+                    'Auth': Auth.getToken()
+                }
+            }
+        })
+    }]).
+    factory('Category', ['$resource', 'Auth', function($resource, Auth) {
+        return $resource("/api/category/:id", {
+            id: '@id'
+        }, {
+            'update': {
+                method: 'PUT',
+                headers: {
+                    'Auth': Auth.getToken()
+                }
+            },
+            'get': {
+                method: 'GET'
+            },
+            'delete': {
+                method: "DELETE",
+                headers: {
+                    'Auth': Auth.getToken()
+                }
+            }
+        })
+    }]).
+    factory('Categorys', ['$resource', 'Auth', function($resource, Auth) {
+        return $resource("/api/categorys", {}, {
             'save': {
                 method: 'POST',
                 headers: {

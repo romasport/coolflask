@@ -39,6 +39,18 @@ define(['app','angular-ui-router'],function(app){
                     url: 'article/create',
                     templateUrl: '/static/partials/admin/articleAction.html',
                     controller: 'articleActionCtr'
+                }).state('admin.categoryList', {
+                    url: 'category/list',
+                    templateUrl: '/static/partials/admin/categoryList.html',
+                    controller: 'categoryListCtr'
+                }).state('admin.categoryModify', {
+                    url: 'category/modify/{id:[0-9]+}',
+                    templateUrl: '/static/partials/admin/categoryAction.html',
+                    controller: 'categoryActionCtr'
+                }).state('admin.categoryCreate', {
+                    url: 'category/create',
+                    templateUrl: '/static/partials/admin/categoryAction.html',
+                    controller: 'categoryActionCtr'
                 }).state('login', {
                     url: '/login',
                     templateUrl: '/static/partials/admin/login.html',

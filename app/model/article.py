@@ -64,7 +64,6 @@ class Article(db.Model):
     view = db.Column(db.Integer)
 
     def __init__(self, user_id, title, content, time, view):
-
         self.user_id = user_id
         self.title = title
         self.content = content

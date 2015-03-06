@@ -1,22 +1,44 @@
-<section class="postAction view">
+<section class="articleAction view">
     <header>
         <h4> <i class="icon file"></i>
             {{action}}
         </h4>
-        <a ui-sref="admin.postList" class="btn back flat">back List</a>
+        <a ui-sref="admin.articleList" class="btn back flat">back List</a>
     </header>
     <div class="postFlex">
         <article>
-                <form novalidate ng-submit="postAction()" name='post' >
+                <form novalidate ng-submit="articleAction()" name='article' >
                     <div class='field'>
                         <input type="text" placeholder="Write the title here" name="title" ng-model='formData.title' required>
-                        <span  class="valid" ng-show="post.title.$invalid && post.title.$dirty">Title Required</span>
+                        <span  class="valid" ng-show="article.title.$invalid && article.title.$dirty">Title Required</span>
                     </div>
-                        <textarea name="body" id="body" cols="30" rows="10" ui-tinymce ng-model="formData.body" required></textarea>
-                    <button class="add btn flat" ng-disabled="post.$invalid">Submit</button>
+                        <textarea name="content" id="content" cols="30" rows="10" ui-tinymce ng-model="formData.content" required></textarea>
+                    <button class="add btn flat" ng-disabled="article.$invalid">Submit</button>
                 </form>
         {{formData}}
         </article>
+        <aside>
+            <section>
+                <header>
+                    <h5>Category</h5>
+                </header>
+                <ul class="checkboxList">
+                    <li ng-repeat ="category in categoryList" class="animatFade">
+                        <label  for="" >
+                            <input type="checkbox" checklist-model="articleCategory.data" checklist-value="category.id" >
+                        </label>
+                        {{category.name}}
+                    </li>
+                </ul>
+                {{articletCategory.data}}
+                <form novalidate ng-submit="categoryAdd()" name='category'>
+                    <input type="text" placeholder="new category" ng-model="cat.name" required>
+                    <input type="text" placeholder="description" ng-model="cat.description" required>
+                    <button class="add btn flat" ng-disabled="category.$invalid">Add</button>
+                </form>
+                {{data}}
+            </section>
+        </aside>
     </div>
 </section>
 <script type="text/ng-template"  id="notify">

@@ -1,0 +1,52 @@
+
+<div class="row">
+
+	<p class="no-bradcrumbs"/></p>
+
+	<section class="span9">
+
+		<article class="element-box" ng-repeat="category in dataList">
+
+			<header class="element-top-bar clearfix">
+                <a href="" item="{{category.id}}" type="post"  removecat index="{{$index}}">remove</a>
+                <a ui-sref="admin.categoryModify({id:{{category.id}}})" class="change">change</a>
+			</header>
+
+			<h2>
+				<a href="/category/{{ category.id }}">
+					{{category.name}}
+				</a>
+			</h2>
+
+			<p>{{ category.description }}</p>
+
+		</article> <!-- /.element-box [blockquote]-->
+
+	</section> <!-- /.span9 [main content] -->
+
+	<aside class="span3">
+
+		<div class="sidebar-element">
+
+			<h3>Меню</h3>
+
+            <a ui-sref="admin.categoryCreate" class="button button-contact large-button">Add category</a>
+
+		</div><!-- /.sidebar-element -->
+
+	</aside> <!-- /.span3 [sidebar] -->
+
+</div>
+
+<script type="text/ng-template" id="popConfirm">
+    <div class="popConfirm">
+        <p>ghfghfg</p>
+        <button class="yes btn" ng-click="confirm('remove')">DO IT</button>
+        <button class="no btn" ng-click="closeThisDialog('cancle')">CANCLE</button>
+    </div>
+</script>
+<script type="text/ng-template" id="notify">
+    <div class="notify">
+        <p>{{ngDialogData.action}}action</p>
+    </div>
+</script>

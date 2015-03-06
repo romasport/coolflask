@@ -7,8 +7,9 @@ class Category(db.Model):
     name = db.Column(db.String(20))
     description = db.Column(db.Text)
 
-    def __init__(self, name):
+    def __init__(self, name, description):
         self.name = name
+        self.description = description
 
     def as_dict(self):
         jsondata = dict()
