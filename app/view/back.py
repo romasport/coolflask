@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint
-from app.model import Article, User, Category
+from app.model import Article, User, Category, Tag
 from flask.ext.restful import Api, Resource, reqparse
 from app import db
 
@@ -29,6 +29,8 @@ class articleParams:
             'content', type=str, required=True, help="No content", location='json')
         self.reqparse.add_argument(
             'category', type=list, required=True, help="No category", location='json')
+        self.reqparse.add_argument(
+            'tag', type=list, required=True, help="No tag", location='json')
 
 
 class userParams:
@@ -49,6 +51,13 @@ class categoryParams:
         self.reqparse.add_argument(
             'description', type=str, required=True, help="No content", location='json')
 
+class tagParams:
+
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument(
+            'name', type=str, required=True, help="No title", location='json')
+
 
 class articleAPI(Resource, articleParams):
 
@@ -65,6 +74,11 @@ class articleAPI(Resource, articleParams):
                 categorys.append(category.as_dict())
             art.update({'category': categorys})
 
+            tags = list()
+            for tag in result.tag:
+                tags.append(tag.as_dict())
+            art.update({'tag': tags})
+
             return art
             # return request.headers.get('Auth',"");
         except Exception as e:
@@ -78,9 +92,13 @@ class articleAPI(Resource, articleParams):
             article.title = args['title']
             article.content = args['content']
             article.category = []
+            article.tag = []
             for cate in args['category']:
                 category = Category.query.filter_by(id=cate).first()
                 article.category.append(category)
+            for tg in args['tag']:
+                tag = Tag.query.filter_by(id=tg).first()
+                article.tag.append(tag)
             db.session.commit()
             return True
         except Exception as e:
@@ -114,12 +132,16 @@ class articlesPageAPI(Resource, articleParams):
 
 class articlesAPI(Resource, articleParams):
 
+
     @auth.login_required
     def post(self):
         args = self.reqparse.parse_args()
         now = datetime.now()
         a = Article(
             user_id=1, title=args['title'], content=args['content'], time=now, view=1)
+        for cate in args['category']:
+            category = Category.query.filter_by(id=cate).first()
+            a.category.append(category)  # many to many insert data
         try:
             db.session.add(a)
             db.session.commit()
@@ -154,18 +176,18 @@ class usersAPI(Resource, userParams):
 
 class categoryAPI(Resource, categoryParams):
 
-    """docstring for articleApi"""
-
     def get(self, id):
         try:
-            if isinstance(id, int):
-                result = Category.query.filter(Category.id == id).first()
-                return result.as_dict()
-            elif isinstance(id, str):
-                result = Category.query.filter(Category.name == id).first()
-                return result.as_dict()
+            i = int(id)
+            result = Category.query.filter(Category.id == i).first()
+            return result.as_dict()
         except Exception as e:
-            return False
+            try:
+                if isinstance(id, str):
+                    result = Category.query.filter(Category.name == id).first()
+                    return result.as_dict()
+            except Exception as e:
+                return False
 
     @auth.login_required
     def put(self, id):
@@ -229,6 +251,81 @@ class categoryPageAPI(Resource, articleParams):
         except Exception as e:
             return False
 
+class tagAPI(Resource, tagParams):
+
+    def get(self, id):
+        try:
+            i = int(id)
+            result = Tag.query.filter(Tag.id == i).first()
+            return result.as_dict()
+        except Exception as e:
+            try:
+                if isinstance(id, str):
+                    result = Tag.query.filter(Tag.name == id).first()
+                    return result.as_dict()
+            except Exception as e:
+                return False
+
+    @auth.login_required
+    def put(self, id):
+        args = self.reqparse.parse_args()
+        try:
+            tag = Tag.query.get(id)
+            tag.name = args['name']
+            db.session.commit()
+            return True
+        except Exception as e:
+            return False
+
+    @auth.login_required
+    def delete(self, id):
+        a = Tag.query.get(id)
+        db.session.delete(a)
+        try:
+            db.session.commit()
+            return True
+        except Exception as e:
+            return False
+
+class tagsAPI(Resource, tagParams):
+
+    def get(self):
+        try:
+            tags = Tag.query.all()
+            tagList = []
+            for tag in tags:
+                tagList.append(tag.as_dict())
+            return tagList
+        except Exception as e:
+            return False
+
+    @auth.login_required
+    def post(self):
+        args = self.reqparse.parse_args()
+        a = Tag(
+            name=args['name'])
+        try:
+            db.session.add(a)
+            db.session.commit()
+            return True
+        except Exception as e:
+            return False
+
+
+class tagPageAPI(Resource, tagParams):
+
+    def get(self, page, per_page):
+        offset = (page - 1) * per_page
+        try:
+            tags = Tag.query.offset(offset).limit(per_page)
+            tagList = []
+            for tag in tags:
+                temp = tag.as_dict()
+                tagList.append(temp)
+            return tagList
+        except Exception as e:
+            return False
+
 
 
 api = Api(blueprint)
@@ -241,6 +338,11 @@ api.add_resource(categoryAPI, "/api/category/<id>", endpoint="category")
 api.add_resource(categorysAPI, "/api/categorys", endpoint="categorys")
 api.add_resource(
     categoryPageAPI, "/api/category/list/<int:page>/<int:per_page>", endpoint="categoryPage")
+
+api.add_resource(tagAPI, "/api/tag/<id>", endpoint="tag")
+api.add_resource(tagsAPI, "/api/tags", endpoint="tags")
+api.add_resource(
+    tagPageAPI, "/api/tag/list/<int:page>/<int:per_page>", endpoint="tagPage")
 
 api.add_resource(userAPI, "/api/user/token", endpoint="userToken")
 api.add_resource(usersAPI, "/api/users", endpoint="users")

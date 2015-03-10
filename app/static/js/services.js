@@ -68,6 +68,37 @@ define(['angular','angular-resource'], function(angular) {
             }
         })
     }]).
+    factory('Tag', ['$resource', 'Auth', function($resource, Auth) {
+        return $resource("/api/tag/:id", {
+            id: '@id'
+        }, {
+            'update': {
+                method: 'PUT',
+                headers: {
+                    'Auth': Auth.getToken()
+                }
+            },
+            'get': {
+                method: 'GET'
+            },
+            'delete': {
+                method: "DELETE",
+                headers: {
+                    'Auth': Auth.getToken()
+                }
+            }
+        })
+    }]).
+    factory('Tags', ['$resource', 'Auth', function($resource, Auth) {
+        return $resource("/api/tags", {}, {
+            'save': {
+                method: 'POST',
+                headers: {
+                    'Auth': Auth.getToken()
+                }
+            }
+        })
+    }]).
     factory('Users', ['$resource', function($resource) {
         return $resource("/api/users")
     }]).

@@ -10,6 +10,11 @@ define(['app','services','ngDialog','angular-ui-router'],function(app){
             $scope.dataList = data;
         })
     }]).
+    controller('tagListCtr', ['$scope', 'getList', function($scope, getList) {
+        getList('tag', 1, 10).success(function(data) {
+            $scope.dataList = data;
+        })
+    }]).
     controller('dashCtr', ['$scope', '$window','$http','ngDialog', 'Auth',function($scope, $window,$http,ngDialog,Auth) {
         $scope.logout = function() {
             ngDialog.openConfirm({ //popup dialog to confire some action
@@ -26,7 +31,7 @@ define(['app','services','ngDialog','angular-ui-router'],function(app){
             });
         }
     }]).
-    controller('articleActionCtr', ['$scope', '$location', 'Articles', 'Article', '$stateParams', 'Categorys', 'Category','ngDialog', function($scope, $location, Articles, Article, $stateParams, Categorys, Category, ngDialog) {
+    controller('articleActionCtr', ['$scope', '$location', 'Articles', 'Article', '$stateParams', 'Categorys', 'Category', 'Tags', 'Tag', 'ngDialog', function($scope, $location, Articles, Article, $stateParams, Categorys, Category, Tags, Tag, ngDialog) {
         var id = $stateParams.id;
         $scope.formData = {};
 
@@ -36,6 +41,13 @@ define(['app','services','ngDialog','angular-ui-router'],function(app){
         });
         $scope.createCategory = "";
         $scope.articleCategory.data = [];
+
+        $scope.articleTag = {};
+        Tags.query(function(d) {
+            $scope.tagList = d;
+        });
+        $scope.createTag = "";
+        $scope.articleTag.data = [];
 
         function resetData(ob) {
             for (var i in ob) {
@@ -83,6 +95,26 @@ define(['app','services','ngDialog','angular-ui-router'],function(app){
             })
         };
 
+        $scope.tg = {};
+
+        $scope.tagAdd = function() {
+
+            var tag = new Tags();
+            tag.name = $scope.tg.name;
+            tag.$save(function() {
+                Tag.get({
+                    id: $scope.tg.name
+                }, function(d) {
+                    $scope.tagList.push({
+                            'id': d.id,
+                            'name': d.name
+                        });
+                    resetData($scope.tg);
+                    $scope.tag.$setPristine();
+                })
+            })
+        };
+
 
 
         if (id) {
@@ -98,6 +130,10 @@ define(['app','services','ngDialog','angular-ui-router'],function(app){
                     $scope.articleCategory.data.push(d.category[i].id)
                 }
 
+                for (var i = 0; i < d.tag.length; i++) {
+                    $scope.articleTag.data.push(d.tag[i].id)
+                }
+
             })
 
             $scope.articleAction = function() {
@@ -105,13 +141,14 @@ define(['app','services','ngDialog','angular-ui-router'],function(app){
                 article.title = $scope.formData.title;
                 article.content = $scope.formData.content;
                 article.category = $scope.articleCategory.data;
+                article.tag = $scope.articleTag.data;
                 if (!article.category.length) {
-                    notify("fdgdfgd");
+                    notify("Необходимо выбрать категорию");
                 } else {
                     article.$update({
                         id: id
                     }, function() {
-                        notify("fdgdfgd");
+                        notify("Запись обновленна");
                         $scope.$on("ngDialog.closed", function() {
                             $scope.$apply(function() {
                                 $location.path("/article/list");
@@ -128,14 +165,19 @@ define(['app','services','ngDialog','angular-ui-router'],function(app){
                 var article = new Articles();
                 article.title = $scope.formData.title;
                 article.content = $scope.formData.content;
-
-                article.$save({}, function(success) { //post success  callback
-                    resetData($scope.formData);
-                    $scope.article.$setPristine();
-                    notify("Article successfully added")
-                }, function(error) { //post error callback
-                    notify("Failed to add articles: " + error.statusText)
-                });
+                article.category = $scope.articleCategory.data;
+                if (!article.category.length) {
+                    notify("error");
+                } else {
+                    article.$save({}, function (success) { //post success  callback
+                        resetData($scope.formData);
+                        $scope.articleCategory.data = [];
+                        $scope.article.$setPristine();
+                        notify("Article successfully added");
+                    }, function (error) { //post error callback
+                        notify("Failed to add articles: " + error.statusText);
+                    });
+                }
             }
         }
     }]).
@@ -214,6 +256,79 @@ define(['app','services','ngDialog','angular-ui-router'],function(app){
             }
         }
     }]).
+    controller('tagActionCtr', ['$scope', '$location', 'Tags', 'Tag', '$stateParams', 'ngDialog', function($scope, $location, Tags, Tag, $stateParams, ngDialog) {
+        var id = $stateParams.id;
+        $scope.formData = {};
+        /*category*/
+        function resetData(ob) {
+            for (var i in ob) {
+                if (typeof(ob[i]) == 'string') {
+                    ob[i] = "";
+                    continue;
+                }
+                if (ob[i] instanceof Array) {
+                    ob[i] = [];
+                    continue;
+                }
+                if (typeof(ob[i]) == "object") {
+                    ob[i] = {};
+                }
+            }
+        }
+
+        function notify(info) {
+            ngDialog.open({
+                template: 'notify',
+                data: {
+                    action: info
+                }
+            })
+        }
+
+        if (id) {
+            /*modify post*/
+            $scope.action = "MODIFY TAG";
+            Tag.get({
+                id: id
+            }, function(d) {
+                $scope.formData = d;
+                /*set exist category*/
+
+            })
+
+            $scope.tagAction = function() {
+                var tag = new Tag();
+                tag.name = $scope.formData.name;
+
+                tag.$update({
+                    id: id
+                }, function() {
+                    notify("update");
+                    $scope.$on("ngDialog.closed", function() {
+                        $scope.$apply(function() {
+                            $location.path("/tag/list");
+                        })
+                    })
+                });
+            }
+
+        } else {
+            /*create post*/
+            $scope.action = "NEW TAG";
+            $scope.tagAction = function() {
+                var tag = new Tags();
+                tag.name = $scope.formData.name;
+
+                tag.$save({}, function(success) { //post success  callback
+                    resetData($scope.formData);
+                    $scope.tag.$setPristine();
+                    notify("Article successfully added")
+                }, function(error) { //post error callback
+                    notify("Failed to add articles: " + error.statusText)
+                });
+            }
+        }
+    }]).
     controller('login', ['$scope', '$window', '$http', 'Auth', function($scope, $window, $http, Auth) {
         $scope.loginData = {};
         $scope.signIn = function() {
@@ -239,5 +354,27 @@ define(['app','services','ngDialog','angular-ui-router'],function(app){
 
         }
 
+    }]).controller('MyCtrl', ['$scope', '$upload', function ($scope, $upload) {
+        $scope.$watch('files', function () {
+            $scope.upload($scope.files);
+        });
+
+        $scope.upload = function (files) {
+            if (files && files.length) {
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    $upload.upload({
+                        url: 'upload/url',
+                        fields: {'username': $scope.username},
+                        file: file
+                    }).progress(function (evt) {
+                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                        console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                    }).success(function (data, status, headers, config) {
+                        console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                    });
+                }
+            }
+        };
     }])
 })

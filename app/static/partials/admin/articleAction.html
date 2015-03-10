@@ -30,11 +30,29 @@
                         {{category.name}}
                     </li>
                 </ul>
-                {{articletCategory.data}}
+                {{articleCategory.data}}
                 <form novalidate ng-submit="categoryAdd()" name='category'>
                     <input type="text" placeholder="new category" ng-model="cat.name" required>
                     <input type="text" placeholder="description" ng-model="cat.description" required>
                     <button class="add btn flat" ng-disabled="category.$invalid">Add</button>
+                </form>
+                {{data}}
+
+                <header>
+                    <h5>Tag</h5>
+                </header>
+                <ul class="checkboxList">
+                    <li ng-repeat ="tag in tagList" class="animatFade">
+                        <label  for="" >
+                            <input type="checkbox" checklist-model="articleTag.data" checklist-value="tag.id" >
+                        </label>
+                        {{tag.name}}
+                    </li>
+                </ul>
+                {{articleTag.data}}
+                <form novalidate ng-submit="tagAdd()" name='tag'>
+                    <input type="text" placeholder="new tag" ng-model="tg.name" required>
+                    <button class="add btn flat" ng-disabled="tag.$invalid">Add</button>
                 </form>
                 {{data}}
             </section>

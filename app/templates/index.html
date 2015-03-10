@@ -30,7 +30,9 @@
                 {% endif %}
 			</figure>
 
-			<p>{{ article.content }}</p>
+			<p>
+                {{ article.content|safe }}
+            </p>
 
 			<footer class="element-bottom-bar">
 				<ul>
@@ -58,24 +60,14 @@
 			<h3>Category</h3>
 
 			<ul class="category-list">
+                {% for categyry in categorys %}
 				<li class="blue-bage">
 					<h3>
-						<a href="#">Category 1</a>
+						<a href="#">{{ categyry.name }}</a>
 					</h3>
-					<p>Category description</p>
+					<p>{{ categyry.description|safe }}</p>
 				</li>
-				<li class="red-bage">
-					<h3>
-						<a href="#">Category 2</a>
-					</h3>
-					<p>Category description</p>
-				</li>
-				<li class="green-bage">
-					<h3>
-						<a href="#">Category 3</a>
-					</h3>
-					<p>Category description</p>
-				</li>
+                {% endfor %}
 			</ul>
 		</div> <!-- /.sidebar-element -->
 
@@ -198,21 +190,11 @@
 			<h3>Tags</h3>
 
 			<ul class="tags">
+                {% for key in tags %}
 				<li>
-					<a href="#">design <b>15</b></a>
+					<a href="#">{{ key }} <b>{{ tags[key] }}</b></a>
 				</li>
-				<li>
-					<a href="#">art <b>7</b></a>
-				</li>
-				<li>
-					<a href="#">fashion <b>16</b></a>
-				</li>
-				<li>
-					<a href="#">photo <b>25</b></a>
-				</li>
-				<li>
-					<a href="#">nature <b>70</b></a>
-				</li>
+                {% endfor %}
 			</ul>
 
 		</div><!-- /.sidebar-element -->

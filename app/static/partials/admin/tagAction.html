@@ -1,0 +1,25 @@
+<section class="articleAction view">
+    <header>
+        <h4> <i class="icon file"></i>
+            {{action}}
+        </h4>
+        <a ui-sref="admin.tagList" class="btn back flat">back List</a>
+    </header>
+    <div class="postFlex">
+        <article>
+                <form novalidate ng-submit="tagAction()" name='tag' >
+                    <div class='field'>
+                        <input type="text" placeholder="Write the title here" name="title" ng-model='formData.name' required>
+                        <span  class="valid" ng-show="tag.name.$invalid && tag.name.$dirty">Title Required</span>
+                    </div>
+                    <button class="add btn flat" ng-disabled="tag.$invalid">Submit</button>
+                </form>
+        {{formData}}
+        </article>
+    </div>
+</section>
+<script type="text/ng-template"  id="notify">
+    <div class="notify">
+        <p>{{ngDialogData.action}} </p>
+    </div>
+</script>

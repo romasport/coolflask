@@ -52,7 +52,7 @@ class Article(db.Model):
 
     category = db.relationship('Category', secondary=artcate,
         backref=db.backref('articles', lazy='dynamic'))
-    tags = db.relationship('Tag', secondary=arttag,
+    tag = db.relationship('Tag', secondary=arttag,
         backref=db.backref('pages', lazy='dynamic'))
 
     title = db.Column(db.String(30))

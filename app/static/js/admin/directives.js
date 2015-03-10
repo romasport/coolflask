@@ -78,6 +78,45 @@ define(['app','ngDialog','tinymce'], function(app) {
             }
         }
     }]).
+    directive('removetag', ['Tag', '$timeout', 'ngDialog', function(Post, $timeout, ngDialog) {
+        return {
+            restrict: 'AE',
+            scope: '=',
+            controller: function($scope, $element, $attrs, $transclude) {},
+            link: function(scope, elem, attr) {
+                elem.bind('click', function(event) {
+                    event.preventDefault();
+                    ngDialog.openConfirm({ //popup dialog to confire some action
+                        template: 'popConfirm',
+                        className: 'ngdialog-theme-default'
+                    }).then(function(value) { // do action
+                        var handle;
+                        switch (attr.type) {
+                            case "post":
+                                handle = Post
+                        }
+                        handle.delete({
+                            id: attr.item
+                        }, function(d) {
+                            scope.dataList.splice(attr.index, 1);
+                            var dialog = ngDialog.open({
+                                template: 'notify',
+                                data: {
+                                    action: "delete"
+                                }
+                            })
+                            setTimeout(function() {
+                                dialog.close();
+                            }, 500)
+
+                        });
+                    }, function(reason) { // cancle action
+                        console.log(reason);
+                    });
+                });
+            }
+        }
+    }]).
     directive('uiTinymce', ['$rootScope', '$timeout', function($rootScope, $timeout) {
         var uiTinymceConfig = {};
         var generatedIds = 0;

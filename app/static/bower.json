@@ -23,6 +23,8 @@
     "pace": "~1.0.2",
     "checklist-model": "~0.2.4",
     "ngDialog": "~0.3.11",
-    "tinymce": "~4.1.7"
+    "tinymce": "~4.1.7",
+    "flow.js": "~2.9.0",
+    "ng-flow": "~2.6.0"
   }
 }
